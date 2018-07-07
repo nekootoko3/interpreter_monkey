@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"monkey/aa"
+	"monkey/evaluator"
 	"monkey/lexer"
 	"monkey/parser"
 )
@@ -23,6 +24,13 @@ func Start(in io.Reader, out io.Writer) {
 
 		line := scanner.Text()
 		l := lexer.New(line)
+
+		// print token ------------------------------------
+		//		for tok := l.NextToken(); tok.Type != token.EOF; tok = l.NextToken() {
+		//			fmt.Printf("%+v\n", tok)
+		//		}
+		// ---------------------------------------------
+
 		p := parser.New(l)
 
 		program := p.ParseProgram()
@@ -31,14 +39,12 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		io.WriteString(out, program.String())
-		io.WriteString(out, "\n")
+		evaluated := evaluator.Eval(program)
 
-		// tokenize ------------------------------------
-		//		for tok := l.NextToken(); tok.Type != token.EOF; tok = l.NextToken() {
-		//			fmt.Printf("%+v\n", tok)
-		//		}
-		// ---------------------------------------------
+		if evaluated != nil {
+			io.WriteString(out, evaluated.Inspect())
+			io.WriteString(out, "\n")
+		}
 	}
 }
 

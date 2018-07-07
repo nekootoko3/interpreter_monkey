@@ -14,6 +14,6 @@ func main() {
 	}
 	fmt.Printf("Hello %s! This is the SAS LOVE Programming language!\n",
 		user.Username)
-	fmt.Printf("やってきなよyou!\n")
+	fmt.Printf("Ginobili! Duncan! Parker!\n")
 	repl.Start(os.Stdin, os.Stdout)
 }

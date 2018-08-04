@@ -25,27 +25,25 @@ if (5 < 10) {
 10 != 9;
 "foobar"
 "foo bar"
+[1, 2];
 `
 
 	tests := []struct {
 		expectedType    token.TokenType
 		expectedLiteral string
 	}{
-		// line 1
 		{token.LET, "let"},
 		{token.IDENT, "five"},
 		{token.ASSIGN, "="},
 		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
 
-		// line 2
 		{token.LET, "let"},
 		{token.IDENT, "ten"},
 		{token.ASSIGN, "="},
 		{token.INT, "10"},
 		{token.SEMICOLON, ";"},
 
-		// line 4
 		{token.LET, "let"},
 		{token.IDENT, "add"},
 		{token.ASSIGN, "="},
@@ -57,17 +55,14 @@ if (5 < 10) {
 		{token.RPAREN, ")"},
 		{token.LBRACE, "{"},
 
-		// line 5
 		{token.IDENT, "x"},
 		{token.PLUS, "+"},
 		{token.IDENT, "y"},
 		{token.SEMICOLON, ";"},
 
-		// line 6
 		{token.RBRACE, "}"},
 		{token.SEMICOLON, ";"},
 
-		// line 8
 		{token.LET, "let"},
 		{token.IDENT, "result"},
 		{token.ASSIGN, "="},
@@ -79,7 +74,6 @@ if (5 < 10) {
 		{token.RPAREN, ")"},
 		{token.SEMICOLON, ";"},
 
-		// line 9
 		{token.BANG, "!"},
 		{token.MINUS, "-"},
 		{token.SLASH, "/"},
@@ -87,7 +81,6 @@ if (5 < 10) {
 		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
 
-		// line 10
 		{token.INT, "5"},
 		{token.LT, "<"},
 		{token.INT, "10"},
@@ -95,7 +88,6 @@ if (5 < 10) {
 		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
 
-		// line 12
 		{token.IF, "if"},
 		{token.LPAREN, "("},
 		{token.INT, "5"},
@@ -104,40 +96,40 @@ if (5 < 10) {
 		{token.RPAREN, ")"},
 		{token.LBRACE, "{"},
 
-		// line 13
 		{token.RETURN, "return"},
 		{token.TRUE, "true"},
 		{token.SEMICOLON, ";"},
 
-		// line 14
 		{token.RBRACE, "}"},
 		{token.ELSE, "else"},
 		{token.LBRACE, "{"},
 
-		// line 15
 		{token.RETURN, "return"},
 		{token.FALSE, "false"},
 		{token.SEMICOLON, ";"},
 
-		// line 16
 		{token.RBRACE, "}"},
 
-		// line 18
 		{token.INT, "10"},
 		{token.EQ, "=="},
 		{token.INT, "10"},
 		{token.SEMICOLON, ";"},
 
-		// line 19
 		{token.INT, "10"},
 		{token.NOT_EQ, "!="},
 		{token.INT, "9"},
 		{token.SEMICOLON, ";"},
 
-		// line 20
 		{token.STRING, "foobar"},
+
 		{token.STRING, "foo bar"},
 
+		{token.LBRACKET, "["},
+		{token.INT, "1"},
+		{token.COMMA, ","},
+		{token.INT, "2"},
+		{token.RBRACKET, "]"},
+		{token.SEMICOLON, ";"},
 		{token.EOF, ""},
 	}
 
